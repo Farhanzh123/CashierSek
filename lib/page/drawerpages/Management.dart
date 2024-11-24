@@ -45,166 +45,52 @@ class _ManagementState extends State<Management> {
             )),
       ),
       drawer: Drawer(
-          child: DrawerPage(),
-        // ListView(
-        //   padding: EdgeInsets.zero,
-        //   children: <Widget>[
-        //     Container(
-        //       height: MediaQuery.of(context).size.height * 0.2,
-        //       child: DrawerHeader(
-        //           decoration: BoxDecoration(
-        //             color: Colors.green,
-        //           ),
-        //           child: Center(
-        //             child: Column(
-        //               mainAxisAlignment: MainAxisAlignment.center,
-        //               children: [
-        //                 Row(
-        //                   children: [
-        //                     Column(
-        //                       children: [                                
-        //                         Icon(
-        //                           Icons.account_circle_sharp,
-        //                           size: 50,
-        //                         )
-        //                       ],
-        //                     ),
-        //                     SizedBox(
-        //                       width: 10,
-        //                     ),
-        //                     Column(
-        //                         crossAxisAlignment: CrossAxisAlignment.start,
-        //                         children: [
-        //                           Text(
-        //                             "Samtion",
-        //                             style: TextStyle(
-        //                                 fontWeight: FontWeight.bold,
-        //                                 fontSize: 18),
-        //                           ),
-        //                           Text(
-        //                             "Owner",
-        //                             style: TextStyle(fontSize: 14),
-        //                           )
-        //                         ])
-        //                   ],
-        //                 ),
-        //               ],
-        //             ),
-        //           )),
-        //     ),
-            
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'Management',
-        //     ),
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'Sales Transaction',
-        //     ),
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'Credit',
-        //     ),
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'PPOB',
-        //     ),
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'Report',
-        //     ),
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'Setting',
-        //     ),
-        //     Padding(
-        //       padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 30),
-        //       child: OutlinedButton(
-        //         onPressed: () {},
-        //         child: Text(
-        //           'Integrate E-Wallet',
-        //           style: TextStyle(color: Colors.black),
-        //         ),
-        //         style: OutlinedButton.styleFrom(
-        //           side: BorderSide(color: Colors.green),
-        //           shape: RoundedRectangleBorder(
-        //             borderRadius: BorderRadius.circular(10)
-        //           )
-        //         ),
-        //       ),
-        //     ),
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'Referral',
-        //     ),
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'My Online Store',
-        //     ),
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'Help & Support',
-        //     ),
-        //     DrawerMenuWidget(
-        //       page: Management(),
-        //       text: 'Sync',              
-        //     ),
-            
-        //     const Padding(
-        //       padding: EdgeInsets.symmetric(horizontal: 30, ),
-              
-        //       child: Text('26-11-2024',
-        //       style: TextStyle(
-        //         color: Colors.grey
-        //       ),),
-        //     ),
-        //   ],
-        // ),
+        child: DrawerPage(),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
         child: ListView(
           children: [
-            customMenuWidget(
-              page: Product(),
-              image: "menu_1.png",
-              text: "Product or Service",
+            MenuWidget(
+              text_menu: "Product and Service",
+              icon: Icons.production_quantity_limits,
+              tujuan_menu: Product(),
             ),
             Divider(
               color: Colors.grey,
             ),
-            customMenuWidget(
-              page: Samplepage2(),
-              image: "menu_2.png",
-              text: "Product Category",
+            MenuWidget(
+              text_menu: "Product Category",
+              icon: Icons.category,
+              tujuan_menu: Samplepage2(),
             ),
             Divider(
               color: Colors.grey,
             ),
-            customMenuWidget(
-              page: Samplepage3(),
-              image: "menu_3.png",
-              text: "Stock Management",
+            MenuWidget(
+              text_menu: "Stock Management",
+              icon: Icons.storage,
+              tujuan_menu: Samplepage3(),
             ),
             Divider(
               color: Colors.grey,
             ),
-            customMenuWidget(
-              page: Samplepage4(),
-              image: "menu_4.png",
-              text: "Customer",
+            MenuWidget(
+              text_menu: "Customer",
+              icon: Icons.person,
+              tujuan_menu: Samplepage4(),
             ),
             Divider(
               color: Colors.grey,
             ),
-            customMenuWidget(
-              page: Samplepage5(),
-              image: "menu_5.png",
-              text: "Credit",
+            MenuWidget(
+              text_menu: "Credit",
+              icon: Icons.credit_card,
+              tujuan_menu: Samplepage5(),
             ),
             Divider(
               color: Colors.grey,
-            ),
+            )
           ],
         ),
       ),
@@ -212,68 +98,38 @@ class _ManagementState extends State<Management> {
   }
 }
 
-class customMenuWidget extends StatelessWidget {
-  Widget? page;
-  String? image;
-  String? text;
-  customMenuWidget({super.key, this.page, this.image = '', this.text = ''});
+class MenuWidget extends StatelessWidget {
+  final String text_menu;
+  final IconData icon; // Ganti image_path dengan icon
+  final Widget? tujuan_menu;
+
+  MenuWidget({
+    super.key,
+    required this.text_menu,
+    required this.icon, // Pastikan icon diisi
+    this.tujuan_menu,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.push(context, MaterialPageRoute(builder: (context) => page!));
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => tujuan_menu!),
+        );
       },
       child: Column(
         children: [
           Row(
             children: [
-              Image.asset(
-                "image/$image",
-                width: 50,
-              ),
-              SizedBox(
-                width: 20,
-              ), // image (icon)
-              Text("$text"), // text (nama menu)
+              Icon(icon, size: 50,color: Color.fromARGB(255, 78, 76, 116),
+              ), // Ganti Image.asset dengan Icon
+              SizedBox(width: 10), // Tambahkan jarak antara ikon dan teks
+              Text(text_menu),
             ],
           ),
         ],
-      ),
-    );
-  }
-}
-
-class DrawerMenuWidget extends StatelessWidget {
-  Widget? page;
-  String? image;
-  String? text;
-  DrawerMenuWidget({super.key, this.page, this.image = '', this.text = ''});
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: InkWell(
-        onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (context) => page!));
-        },
-        child: Column(
-          children: [
-            Row(
-              children: [
-                SizedBox(
-                  width: 20,
-                ), 
-                Text("$text",
-                style: TextStyle(
-                  fontSize: 16
-                ),
-                ),
-              ],
-            ),
-          ],
-        ),
       ),
     );
   }
