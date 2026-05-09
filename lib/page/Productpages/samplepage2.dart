@@ -7,7 +7,7 @@ class Samplepage2 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Product or Service"),
+        title: Text("Tell we to service"),
       ),
     );
   }
