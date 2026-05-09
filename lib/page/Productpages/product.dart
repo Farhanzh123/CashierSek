@@ -20,7 +20,7 @@ class _ProductState extends State<Product> {
   void setData() {
     products = [
       itemProduct(
-        nama: 'Mie Sukses isi Dua',
+        nama: 'Mie Sukses isi Dua ayam kremes',
         harga_beli:2500,
         harga_jual: 3000,
         kode_barang: 'TRPLF0001',
